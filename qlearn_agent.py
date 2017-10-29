@@ -5,13 +5,20 @@ import random
 
 # The main learning agent
 # Given a maze, learns the optimal path from each starting point via Q-Learning
+# For more info on this algorithm, check out the blog post here: https://github.com/mitchellspryn/QLearningMazeSolver
 #
 class QLearnAgent():
     def __init__(self):
       # Reward matrix
+      # R(A(s, s')) in the blog post
+      # s indexes the rows, s' the columns
+      # So R(A(s,s')) = R[s][s']
       self.R = None
 
       # State matrix 
+      # Q(A(s,s')) in the blog post
+      # s indexes the rows, s' the columns
+      # So Q(A(s,s')) = Q[s][s']
       self.Q = None
 
       self.num_columns = None
@@ -27,7 +34,7 @@ class QLearnAgent():
 
     # Initializes the learning matricies
     # Q matrix -> zeros
-    # R matrix -> 0 if connected, 1 if goal, 0 otherwise
+    # R matrix -> 0 if connected, 1 if goal, -1 otherwise
     #
     def initialize(self, maze):
       if maze is None:
